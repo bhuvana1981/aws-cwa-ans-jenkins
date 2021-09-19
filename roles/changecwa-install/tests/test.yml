@@ -1,0 +1,8 @@
+---
+- name: cloudwatch agent
+  hosts: cloudwatch
+  become: true
+  vars:
+  roles:
+    - testcwa-install
+

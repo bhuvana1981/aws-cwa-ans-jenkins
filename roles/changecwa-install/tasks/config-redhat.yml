@@ -1,0 +1,41 @@
+---
+  - name: Configure Linux Agent
+    block:
+      - name: deploy Linux agent configuration
+        template:
+          src: "{{ item }}"
+          dest: "{{ aws_cw_agent_config_file }}"
+          mode: 0644
+        with_first_found:
+          - files:
+              - "{{ aws_cw_config_template }}"
+        notify: restart-cw-agent
+        tags:
+          - config
+    #    register: config
+
+#  - name: start cloudwatch agent
+    #command: |
+     #     ./amazon-cloudwatch-agent-ctl \
+      #        -a fetch-config \
+       #       -m {{ aws_cw_agent_type }} \
+        #      -c file:{{ aws_cw_root }}/amazon-cloudwatch-agent.json \
+         #     -s
+ #   args:
+  #     chdir: "{{ aws_cw_root }}/bin"
+   # when: config is changed
+   # notify: restart-cw-agent
+
+
+# Get the version and status of Cloudwatch Agent
+
+  - name: Information about cloudwatch agent
+    command: sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+    register: cloudwatchagentinfo
+    when: ansible_os_family != "Windows"
+
+  - debug:
+      msg: "{{ cloudwatchagentinfo.stdout_lines }}"
+    when: ansible_os_family != "Windows"
+
+    

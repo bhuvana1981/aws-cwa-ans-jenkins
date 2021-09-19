@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: Bhuvaneswari Rethinam
+  description: Monitoring Metrics and Logs via Cloudwatch Agent
+  min_ansible_version: 2.6.0
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+
+

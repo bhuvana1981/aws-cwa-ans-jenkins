@@ -1,0 +1,6 @@
+---
+- name: restart-cw-agent
+  command: "/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c file:/opt/aws/amazon-cloudwatch-agent/amazon-cloudwatch-agent.json -s" 
+
+- name: restart-cw-agent1
+  command: "/bin/systemctl restart amazon-cloudwatch-agent.service"
