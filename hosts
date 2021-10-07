@@ -1,2 +1,2 @@
 [cloudwatch]
- 172.31.84.227 
+ 172.31.84.227 ansible_user=ec2-user
